@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户中心 - 校园美食测评与推荐系统</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/user-profile.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">校园美食测评与推荐系统</div>
+            <ul class="navbar-menu" id="navbarMenu">
+                <!-- 导航栏将通过JavaScript动态添加 -->
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <h2>用户中心</h2>
+
+            <!-- 数据统计卡片 -->
+            <div class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-number" id="reviewCount">0</div>
+                        <div class="stat-label">评价数量</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">❤️</div>
+                        <div class="stat-number" id="favoriteCount">0</div>
+                        <div class="stat-label">收藏数量</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👁️</div>
+                        <div class="stat-number" id="visitCount">0</div>
+                        <div class="stat-label">访问次数</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-number" id="joinDate">--</div>
+                        <div class="stat-label">注册时间</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 选项卡导航 -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="profile">个人信息</button>
+                <button class="tab-btn" data-tab="password">密码管理</button>
+                <button class="tab-btn" data-tab="reviews">评价管理</button>
+                <button class="tab-btn" data-tab="favorites">收藏管理</button>
+                <button class="tab-btn" data-tab="notifications">通知管理</button>
+            </div>
+
+            <!-- 个人信息选项卡 -->
+            <div id="profile" class="tab-content active">
+                <div class="tab-content-wrapper">
+                    <!-- 个人信息展示 -->
+                    <div class="user-info-card">
+                        <h3>个人信息</h3>
+                        <div id="user-info" class="user-info">
+                            <div class="user-avatar">
+                                <div class="avatar-container">
+                                    <img id="avatarPreview" src="../images/avatar_default.png" alt="用户头像">
+                                    <div class="avatar-upload-btn" onclick="document.getElementById('avatarInput').click()">
+                                        <span>上传头像</span>
+                                    </div>
+                                    <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+                                </div>
+                                <div id="userBadge" class="user-badge-container" style="display: none;">
+                                    <span class="badge-icon">🎖️</span>
+                                    <span class="badge-text" id="userLevelName">美食探险者</span>
+                                </div>
+                                <div class="level-progress-container" id="levelProgressSection" style="display: none; width: 180px;">
+                                    <div class="level-info">
+                                        <span>Lv.<span id="currentLevel">1</span></span>
+                                        <span>下一级: <span id="nextLevelProgress">0/10</span></span>
+                                    </div>
+                                    <div class="level-progress-bar">
+                                        <div class="level-progress-fill" id="levelProgressFill"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info-details">
+                                <div class="info-item">
+                                    <strong>用户名:</strong> <span id="usernameDisplay">--</span>
+                                </div>
+                                <div class="info-item">
+                                    <strong>用户类型:</strong> <span id="userTypeDisplay">--</span>
+                                </div>
+                                <div class="info-item">
+                                    <strong>邮箱:</strong> <span id="emailDisplay">--</span>
+                                </div>
+                                <div class="info-item">
+                                    <strong>个人简介:</strong> <span id="bioDisplay">--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 编辑个人信息 -->
+                    <div class="user-info-card">
+                        <h3>编辑个人信息</h3>
+                        <form id="edit-profile-form" class="edit-profile-form">
+                            <div class="form-group">
+                                <label for="email">邮箱:</label>
+                                <input type="email" id="email" name="email" placeholder="请输入邮箱">
+                                <div class="error-message" id="emailError"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="bio">个人简介:</label>
+                                <textarea id="bio" name="bio" rows="4" placeholder="请输入个人简介"></textarea>
+                            </div>
+                            <button type="submit" class="btn">保存修改</button>
+                            <div id="profile-message" class="message"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 密码管理选项卡 -->
+            <div id="password" class="tab-content">
+                <div class="user-info-card">
+                    <h3>修改密码</h3>
+                    <form id="change-password-form" class="change-password-form">
+                        <div class="form-group">
+                            <label for="old-password">旧密码:</label>
+                            <input type="password" id="old-password" name="old_password" placeholder="请输入旧密码" required>
+                            <div class="error-message" id="oldPasswordError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-password">新密码:</label>
+                            <input type="password" id="new-password" name="new_password" placeholder="请输入新密码" required>
+                            <div class="error-message" id="newPasswordError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-password">确认新密码:</label>
+                            <input type="password" id="confirm-password" name="confirm_password" placeholder="请再次输入新密码" required>
+                            <div class="error-message" id="confirmPasswordError"></div>
+                        </div>
+                        <button type="submit" class="btn">修改密码</button>
+                        <div id="password-message" class="message"></div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 评价管理选项卡 -->
+            <div id="reviews" class="tab-content">
+                <div class="tab-content-wrapper">
+                    <div class="section-header">
+                        <h3>我的评价</h3>
+                        <div class="search-bar">
+                            <input type="text" id="reviewSearch" placeholder="搜索评价...">
+                            <select id="reviewFilter">
+                                <option value="all">全部评价</option>
+                                <option value="high">高分评价</option>
+                                <option value="low">低分评价</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="reviews-list" class="reviews-list">
+                        <div class="loading">加载中...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 收藏管理选项卡 -->
+            <div id="favorites" class="tab-content">
+                <div class="tab-content-wrapper">
+                    <div class="section-header">
+                        <h3>我的收藏</h3>
+                        <div class="search-bar">
+                            <input type="text" id="favoriteSearch" placeholder="搜索收藏...">
+                            <select id="favoriteFilter">
+                                <option value="all">全部收藏</option>
+                                <!-- 分类选项将通过JavaScript动态添加 -->
+                            </select>
+                            <button class="btn btn-sm" id="batchDeleteBtn">批量取消</button>
+                            <button class="btn btn-sm" id="exportImageBtn">导出图片</button>
+                        </div>
+                    </div>
+                    <div id="favorites-list" class="favorites-list">
+                        <div class="loading">加载中...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 通知管理选项卡 -->
+            <div id="notifications" class="tab-content">
+                <div class="tab-content-wrapper">
+                    <div class="section-header">
+                        <h3>我的通知</h3>
+                        <div class="search-bar">
+                            <button class="btn btn-sm" id="markAllReadBtn">全部标记为已读</button>
+                            <button class="btn btn-sm btn-danger" id="clearAllBtn">清空所有通知</button>
+                        </div>
+                    </div>
+                    <div id="notifications-list" class="notifications-list">
+                        <div class="loading">加载中...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 返回顶部按钮 -->
+    <button id="backToTop" class="back-to-top" title="返回顶部">↑</button>
+
+    <script src="../js/utils.js"></script>
+    <script src="../js/user_center.js"></script>
+</body>
+</html>

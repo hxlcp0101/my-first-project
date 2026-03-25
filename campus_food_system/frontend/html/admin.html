@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理中心 - 校园美食测评与推荐系统</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">校园美食测评与推荐系统</div>
+            <ul class="navbar-menu" id="navbarMenu">
+                <li><a href="index.html">前台首页</a></li>
+                <!-- 导航栏将通过JavaScript动态添加 -->
+            </ul>
+        </div>
+    </nav>
+    <script src="../js/utils.js"></script>
+
+    <div class="container">
+        <div class="admin-header">
+            <h1>管理中心</h1>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 30px;">
+                校园美食信息的录入、审核与维护
+            </p>
+        </div>
+
+        <!-- 统计摘要 -->
+        <div class="admin-stats-grid">
+            <div class="stat-item">
+                <div class="stat-icon">🍴</div>
+                <div class="stat-info">
+                    <h4>美食总数</h4>
+                    <p id="totalFoodCount">0</p>
+                </div>
+            </div>
+            <div class="stat-item" style="border-left-color: var(--success-color);">
+                <div class="stat-icon">📂</div>
+                <div class="stat-info">
+                    <h4>食堂分类</h4>
+                    <p id="totalCategoryCount">0</p>
+                </div>
+            </div>
+            <div class="stat-item" style="border-left-color: #f39c12;">
+                <div class="stat-icon">⭐</div>
+                <div class="stat-info">
+                    <h4>平均评分</h4>
+                    <p id="systemAverageRating">0.0</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-dashboard">
+            <!-- 侧边导航 -->
+            <aside class="admin-sidebar">
+                <ul class="admin-nav-list">
+                    <li class="admin-nav-item">
+                        <a href="#categorySection" class="admin-nav-link active" onclick="switchSection('categorySection')">
+                            <span>📂 食堂分类管理</span>
+                        </a>
+                    </li>
+                    <li class="admin-nav-item">
+                        <a href="#foodSection" class="admin-nav-link" onclick="switchSection('foodSection')">
+                            <span>🍴 美食信息管理</span>
+                        </a>
+                    </li>
+                    <li class="admin-nav-item">
+                        <a href="#insightsSection" class="admin-nav-link" onclick="switchSection('insightsSection')">
+                            <span>📈 运营动态分析</span>
+                        </a>
+                    </li>
+                    <li class="admin-nav-item">
+                        <a href="#reviewSection" class="admin-nav-link" onclick="switchSection('reviewSection')">
+                            <span>💬 评价管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </aside>
+
+            <!-- 主要内容区 -->
+            <main class="admin-content">
+                
+                <!-- 运营洞察部分 -->
+                <section id="insightsSection" class="admin-card" style="display: none;">
+                    <div class="admin-card-header">
+                        <h2 class="admin-card-title">📈 运营洞察与备货建议</h2>
+                        <button class="btn btn-sm" onclick="loadInsights()">刷新数据</button>
+                    </div>
+                    
+                    <div class="insights-container">
+                        <div class="insights-grid">
+                            <!-- 核心动态 -->
+                            <div class="insight-box">
+                                <h3>🔥 热门备货排行 (TOP 10)</h3>
+                                <div class="table-responsive">
+                                    <table class="insight-table">
+                                        <thead>
+                                            <tr>
+                                                <th>美食名称</th>
+                                                <th>所属食堂</th>
+                                                <th>热度(收藏/评价)</th>
+                                                <th>备货建议</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="popularFoodsBody">
+                                            <!-- JS动态填充 -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- 食堂动态 -->
+                            <div class="insight-box">
+                                <h3>🏢 食堂动态监控</h3>
+                                <div id="categoryInsightsList" class="category-insights-grid">
+                                    <!-- JS动态填充 -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 分类管理部分 -->
+                <section id="categorySection" class="admin-card">
+                    <div class="admin-card-header">
+                        <h2 class="admin-card-title">📂 食堂分类管理</h2>
+                    </div>
+                    
+                    <div class="admin-form">
+                        <h3 style="margin-bottom: 15px; font-size: 16px;">➕ 添加新分类</h3>
+                        <form id="addCategoryForm" class="admin-form-grid">
+                            <div class="form-group">
+                                <label for="categoryName">分类名称：</label>
+                                <input type="text" id="categoryName" name="categoryName" placeholder="如：第一食堂" required>
+                            </div>
+                            <div class="form-group form-full-width">
+                                <label for="categoryDescription">分类描述：</label>
+                                <textarea id="categoryDescription" name="categoryDescription" placeholder="简要描述该食堂的特色..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn">保存分类</button>
+                            </div>
+                        </form>
+                        <div id="categoryMessage"></div>
+                    </div>
+
+                    <div class="admin-list-container" style="margin-top: 30px;">
+                        <h3 style="margin-bottom: 15px; font-size: 16px;">📋 分类列表</h3>
+                        <div id="categoryList" class="admin-list-grid">
+                            <!-- 分类列表将通过JavaScript动态添加 -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 美食管理部分 -->
+                <section id="foodSection" class="admin-card" style="display: none;">
+                    <div class="admin-card-header">
+                        <h2 class="admin-card-title">🍴 美食信息管理</h2>
+                    </div>
+                    
+                    <div class="admin-form">
+                        <h3 style="margin-bottom: 15px; font-size: 16px;">➕ 添加新美食</h3>
+                        <form id="addFoodForm" class="admin-form-grid">
+                            <div class="form-group">
+                                <label for="foodName">美食名称：</label>
+                                <input type="text" id="foodName" name="foodName" placeholder="如：红烧肉" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="foodCategory">所属分类：</label>
+                                <select id="foodCategory" name="foodCategory" required>
+                                    <option value="">请选择分类</option>
+                                </select>
+                            </div>
+                            <div class="form-group form-full-width">
+                                <label for="foodDescription">美食描述：</label>
+                                <textarea id="foodDescription" name="foodDescription" placeholder="详细描述美食的口感、主料等..." required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="foodPrice">参考价格 (¥)：</label>
+                                <input type="number" id="foodPrice" name="foodPrice" step="0.01" min="0" placeholder="0.00" required>
+                            </div>
+                            <div class="form-group form-full-width">
+                                <label>美食标签：</label>
+                                <div id="foodTagsContainer" class="tags-checkbox-group">
+                                    <!-- 标签将动态加载 -->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="foodImage">美食图片：</label>
+                                <input type="file" id="foodImage" name="foodImage" accept="image/*">
+                            </div>
+                            <div class="form-group" style="display: flex; align-items: flex-end;">
+                                <button type="submit" class="btn">发布美食</button>
+                            </div>
+                        </form>
+                        <div id="foodMessage"></div>
+                    </div>
+
+                    <div class="admin-list-container" style="margin-top: 30px;">
+                        <h3 style="margin-bottom: 15px; font-size: 16px;">📋 美食列表</h3>
+                        <div id="foodList" class="admin-list-grid">
+                            <!-- 美食列表将通过JavaScript动态添加 -->
+                        </div>
+                        
+                        <!-- 分页控制 -->
+                        <div id="foodPagination" class="pagination-container" style="display: none;">
+                            <button class="btn btn-sm" id="prevPage" onclick="changePage(currentPage - 1)">上一页</button>
+                            <span id="pageInfo">第 1 / 1 页</span>
+                            <button class="btn btn-sm" id="nextPage" onclick="changePage(currentPage + 1)">下一页</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 评价管理部分 -->
+                <section id="reviewSection" class="admin-card" style="display: none;">
+                    <div class="admin-card-header">
+                        <h2 class="admin-card-title">💬 评价管理</h2>
+                        <button class="btn btn-sm" onclick="loadReviews()">刷新数据</button>
+                    </div>
+                    
+                    <!-- 可视化面板 -->
+                    <div class="admin-form" style="margin-bottom: 20px;">
+                        <h3 style="margin-bottom: 15px; font-size: 16px;">📊 评价分析</h3>
+                        <div class="sentiment-criteria" style="margin-bottom: 20px; padding: 15px; background: var(--vivo-gray); border-radius: 8px; border: 1px solid var(--border-light);">
+                            <h4 style="margin-top: 0; margin-bottom: 10px; font-size: 14px; font-weight: 600;">情感分析标准</h4>
+                            <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: var(--text-secondary);">
+                                <li>正面：情感得分 > 0.1</li>
+                                <li>负面：情感得分 < -0.1</li>
+                                <li>中性：-0.1 ≤ 情感得分 ≤ 0.1</li>
+                            </ul>
+                            <p style="margin: 10px 0 0 0; font-size: 12px; color: var(--text-secondary);">
+                                注：情感分析基于TextBlob库，通过分析评论文本的情感倾向得出结果。
+                            </p>
+                        </div>
+                        <div class="review-dashboard-grid">
+                            <!-- 情感分析卡片 -->
+                            <div class="review-stat-card">
+                                <h4>情感分布</h4>
+                                <div class="review-stat-content">
+                                    <div class="review-stat-chart" id="sentimentChart"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- 评分分布卡片 -->
+                            <div class="review-stat-card">
+                                <h4>评分分布</h4>
+                                <div class="review-stat-content">
+                                    <div class="review-stat-chart" id="ratingChart"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- 评价趋势卡片 -->
+                            <div class="review-stat-card full-width">
+                                <h4>评价趋势</h4>
+                                <div class="review-stat-content">
+                                    <div class="review-stat-chart" id="trendChart"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 筛选功能 -->
+                    <div class="admin-form" style="margin-bottom: 20px;">
+                        <div class="admin-form-grid">
+                            <div class="form-group">
+                                <label for="reviewFilter">情感筛选：</label>
+                                <select id="reviewFilter" onchange="loadReviews()">
+                                    <option value="all">全部情感</option>
+                                    <option value="positive">正面</option>
+                                    <option value="negative">负面</option>
+                                    <option value="neutral">中性</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="ratingFilter">评分筛选：</label>
+                                <select id="ratingFilter" onchange="loadReviews()">
+                                    <option value="all">全部评分</option>
+                                    <option value="5">5星</option>
+                                    <option value="4">4星</option>
+                                    <option value="3">3星</option>
+                                    <option value="2">2星</option>
+                                    <option value="1">1星</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 评价列表 -->
+                    <div class="admin-list-container">
+                        <h3 style="margin-bottom: 15px; font-size: 16px;">📋 评价列表</h3>
+                        <div id="reviewList" class="admin-list-grid">
+                            <!-- 评价列表将通过JavaScript动态添加 -->
+                        </div>
+                        
+                        <!-- 分页控制 -->
+                        <div id="reviewPagination" class="pagination-container" style="display: none;">
+                            <button class="btn btn-sm" id="prevReviewPage" onclick="changeReviewPage(currentReviewPage - 1)">上一页</button>
+                            <span id="reviewPageInfo">第 1 / 1 页</span>
+                            <button class="btn btn-sm" id="nextReviewPage" onclick="changeReviewPage(currentReviewPage + 1)">下一页</button>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- 编辑弹窗 -->
+    <div id="editModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">编辑信息</h3>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="editForm" class="admin-form-grid">
+                    <!-- 动态填充表单内容 -->
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">取消</button>
+                <button type="button" class="btn btn-primary" id="saveEditBtn">保存修改</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>

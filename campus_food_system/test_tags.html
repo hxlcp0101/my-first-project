@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>标签测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .tag-filter {
+            margin: 20px 0;
+        }
+        .tag-filter button {
+            margin: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .tag-filter button.active {
+            background-color: #f39c12;
+            color: white;
+        }
+        .food-list {
+            margin: 20px 0;
+        }
+        .food-item {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <h1>标签测试页面</h1>
+    
+    <div id="message" class="message"></div>
+    
+    <div class="tag-filter">
+        <h3>标签筛选</h3>
+        <div id="tagButtons">
+            <!-- 标签按钮将通过JavaScript动态添加 -->
+        </div>
+    </div>
+    
+    <div class="food-list" id="foodList">
+        <h3>美食列表</h3>
+        <!-- 美食将通过JavaScript动态添加 -->
+    </div>
+    
+    <script>
+        // 显示消息
+        function showMessage(text, type = 'info') {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = text;
+            messageDiv.className = `message ${type}`;
+        }
+        
+        // 获取标签数据
+        function fetchTags() {
+            showMessage('正在获取标签数据...');
+            
+            fetch('/food/api/tags/')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('网络响应失败');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.status === 'success') {
+                        showMessage('获取标签数据成功', 'success');
+                        const tags = data.data;
+                        renderTags(tags);
+                    } else {
+                        showMessage(`获取标签数据失败: ${data.message}`, 'error');
+                        console.error('获取标签数据失败:', data.message);
+                    }
+                })
+                .catch(error => {
+                    showMessage(`获取标签数据失败: ${error.message}`, 'error');
+                    console.error('获取标签数据失败:', error);
+                });
+        }
+        
+        // 渲染标签
+        function renderTags(tags) {
+            const tagButtons = document.getElementById('tagButtons');
+            tagButtons.innerHTML = '<button class="active" data-tag="all">全部</button>';
+            
+            tags.forEach(tag => {
+                const button = document.createElement('button');
+                button.textContent = `${tag.name} (${tag.food_count})`;
+                button.dataset.tag = tag.id;
+                tagButtons.appendChild(button);
+            });
+            
+            // 绑定点击事件
+            setupTagClickEvents();
+        }
+        
+        // 设置标签点击事件
+        function setupTagClickEvents() {
+            const buttons = document.querySelectorAll('.tag-filter button');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // 移除所有按钮的active类
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    // 添加当前按钮的active类
+                    this.classList.add('active');
+                    
+                    const tagId = this.dataset.tag === 'all' ? null : this.dataset.tag;
+                    showMessage(`点击了标签: ${this.textContent}, 标签ID: ${tagId}`);
+                    
+                    // 获取美食数据
+                    fetchFoods(null, tagId);
+                });
+            });
+        }
+        
+        // 获取美食数据
+        function fetchFoods(categoryId = null, tagId = null) {
+            showMessage('正在获取美食数据...');
+            
+            let url = '/food/api/foods/';
+            const params = [];
+            
+            if (categoryId) {
+                params.push(`category_id=${categoryId}`);
+            }
+            
+            if (tagId) {
+                params.push(`tag_id=${tagId}`);
+            }
+            
+            if (params.length > 0) {
+                url += `?${params.join('&')}`;
+            }
+            
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('网络响应失败');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.status === 'success') {
+                        showMessage(`获取美食数据成功，共 ${data.data.length} 个美食`, 'success');
+                        renderFoods(data.data);
+                    } else {
+                        showMessage(`获取美食数据失败: ${data.message}`, 'error');
+                        console.error('获取美食数据失败:', data.message);
+                    }
+                })
+                .catch(error => {
+                    showMessage(`获取美食数据失败: ${error.message}`, 'error');
+                    console.error('获取美食数据失败:', error);
+                });
+        }
+        
+        // 渲染美食
+        function renderFoods(foods) {
+            const foodList = document.getElementById('foodList');
+            foodList.innerHTML = '<h3>美食列表</h3>';
+            
+            if (foods.length === 0) {
+                foodList.innerHTML += '<p>暂无美食数据</p>';
+                return;
+            }
+            
+            foods.forEach(food => {
+                const foodItem = document.createElement('div');
+                foodItem.className = 'food-item';
+                
+                let tagsHtml = '';
+                if (food.tags && food.tags.length > 0) {
+                    tagsHtml = '<p>标签: ' + food.tags.map(tag => tag.name).join(', ') + '</p>';
+                }
+                
+                foodItem.innerHTML = `
+                    <h4>${food.name}</h4>
+                    <p>分类: ${food.categoryName}</p>
+                    ${tagsHtml}
+                    <p>价格: ¥${food.price.toFixed(2)}</p>
+                    <p>评分: ${food.average_rating} (${food.review_count}条评价)</p>
+                `;
+                
+                foodList.appendChild(foodItem);
+            });
+        }
+        
+        // 页面加载时初始化
+        window.onload = function() {
+            fetchTags();
+            fetchFoods();
+        };
+    </script>
+</body>
+</html>

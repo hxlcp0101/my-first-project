@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart.js测试</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div style="width: 400px; height: 400px;">
+        <canvas id="testChart"></canvas>
+    </div>
+    <script>
+        window.onload = function() {
+            const ctx = document.getElementById('testChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['正面', '负面', '中性'],
+                    datasets: [{
+                        data: [10, 5, 15],
+                        backgroundColor: ['#52c41a', '#f5222d', '#1890ff'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+            console.log('Chart.js测试成功');
+        };
+    </script>
+</body>
+</html>

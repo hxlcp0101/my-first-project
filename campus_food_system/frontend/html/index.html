@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>校园美食测评与推荐系统</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/home.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">校园美食测评与推荐系统</div>
+            <ul class="navbar-menu" id="navbarMenu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="recommend.html">美食推荐</a></li>
+                <li><a href="user_center.html">用户中心</a></li>
+                <li><a href="login.html">登录</a></li>
+                <li><a href="register.html">注册</a></li>
+                <li id="admin-link" style="display: none;"><a href="http://localhost:8000/admin/" target="_blank">Django后台</a></li>
+            </ul>
+        </div>
+    </nav>
+    <script src="../js/utils.js"></script>
+    <script src="../js/index.js"></script>
+    <script>
+        // 页面加载时初始化
+        window.onload = function() {
+            // 处理URL锚点，暂时移除锚点以防止浏览器自动滚动
+            const currentUrl = window.location.href;
+            if (currentUrl.includes('#')) {
+                const urlWithoutHash = currentUrl.split('#')[0];
+                window.history.replaceState({}, document.title, urlWithoutHash);
+            }
+            
+            // 使用setTimeout延迟执行滚动到顶部的操作，确保浏览器恢复滚动位置后再执行
+            setTimeout(function() {
+                window.scrollTo(0, 0);
+            }, 100);
+            
+            // 使用setTimeout确保DOM完全加载后再执行其他操作
+            setTimeout(function() {
+                setupNavbar(); // 使用utils.js中的setupNavbar函数
+                initPage(); // 初始化美食数据
+                
+                // 再次滚动到顶部，确保页面最终停留在顶部
+                setTimeout(function() {
+                    window.scrollTo(0, 0);
+                }, 100);
+            }, 100);
+        };
+    </script>
+
+    <!-- 英雄区域 -->
+    <section class="hero">
+            
+        <div class="container">
+            <div class="hero-content">
+                <h2>欢迎来到校园美食测评与推荐系统</h2>
+                <p>发现校园美食，分享你的味蕾体验</p>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="搜索美食、食堂或标签...">
+                    <button id="searchButton" class="btn btn-search">搜索</button>
+                </div>
+                <div class="hero-buttons">
+                    <a href="recommend.html" class="btn btn-primary">查看推荐美食</a>
+                    <a href="all_foods.html" class="btn btn-secondary">全部美食</a>
+                    <a href="#reviews" class="btn btn-tertiary">热门评价</a>
+                </div>
+            </div>
+            <div class="hero-image-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-track">
+                        <div class="carousel-item">
+                            <img src="../images/汉堡.jpg" alt="美食图片1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../media/food_images/汉堡.jpg" alt="美食图片2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../media/food_images/3421645_20251211180541044223_1.jpg" alt="美食图片3">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../media/food_images/1376263334534709258.jpeg" alt="美食图片4">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../media/food_images/生活照.jpg" alt="美食图片5">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 推荐美食区域 -->
+    <section class="recommend-section">
+        <div class="container">
+            <h2>美食推荐高分榜</h2>
+            <p>根据用户评价和评分，为你推荐校园人气美食TOP6</p>
+            <div class="food-list" id="recommendList">
+                <!-- 推荐美食将通过JavaScript动态添加 -->
+            </div>
+            <div class="view-all">
+                <a href="recommend.html">查看全部推荐</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 美食分类区域 -->
+    <section id="categories" class="categories-section">
+        <div class="container">
+            <h2>美食地点</h2>
+            <div class="category-grid" id="categoryGrid">
+                <!-- 分类卡片将通过JavaScript动态添加 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 热门评价区域 -->
+    <section id="reviews" class="reviews-section">
+        <div class="container">
+            <h2>热门评价</h2>
+            <p class="section-description">查看其他同学对校园美食的真实评价，帮助你做出更好的选择。每个评价都包含用户的真实体验和评分，让你了解美食的真实味道和价值。</p>
+            <div class="reviews-list" id="popularReviews">
+                <!-- 热门评价将通过JavaScript动态添加 -->
+            </div>
+        </div>
+    </section>
+
+
+
+</body>
+</html>

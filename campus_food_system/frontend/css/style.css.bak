@@ -1,0 +1,1779 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fef9f0;
+    color: #5d4037;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.hero-image {
+    width: 200px;
+    height: auto;
+    border-radius: 8px;
+    margin: 20px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    position: relative;
+    animation: rotate 20s linear infinite;
+}
+
+h1 {
+    text-align: center;
+    color: #d35400;
+    margin-bottom: 30px;
+}
+
+.login-form, .register-form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+h2 {
+    text-align: center;
+    color: #7f664f;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #8b4513;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e0d2c3;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff9f0;
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #f39c12;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #e67e22;
+}
+
+.btn-primary {
+    background-color: #e67e22;
+}
+
+.btn-primary:hover {
+    background-color: #d35400;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 2px solid #f39c12;
+    color: #f39c12;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(243, 156, 18, 0.1);
+}
+
+.register-link, .login-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.register-link a, .login-link a {
+    color: #f39c12;
+    text-decoration: none;
+}
+
+.register-link a:hover, .login-link a:hover {
+    text-decoration: underline;
+}
+
+#message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+#message.success {
+    background-color: #f1f8e9;
+    color: #558b2f;
+    border: 1px solid #dcedc8;
+}
+
+#message.error {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+/* 导航栏样式 */
+.navbar {
+    background-color: #d35400;
+    color: #fff;
+    padding: 15px 0;
+    margin-bottom: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    padding: 10px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
+}
+
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.navbar-menu li {
+    position: relative;
+}
+
+.navbar-menu li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 8px 0;
+}
+
+.navbar-menu li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #f39c12;
+    transition: width 0.3s ease;
+}
+
+.navbar-menu li a:hover {
+    color: #f39c12;
+}
+
+.navbar-menu li a:hover::after {
+    width: 100%;
+}
+
+.navbar-menu li a.active {
+    color: #f39c12;
+}
+
+.navbar-menu li a.active::after {
+    width: 100%;
+}
+
+/* 美食列表样式 */
+.food-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.food-item {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #f3e0c8;
+}
+
+.food-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, #f39c12, #d35400);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.food-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.food-item:hover::before {
+    transform: scaleX(1);
+}
+
+.food-item h3 {
+    color: #d35400;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    line-height: 1.3;
+}
+
+.food-item:hover h3 {
+    color: #e67e22;
+    transform: translateX(5px);
+}
+
+.food-item p {
+    color: #7f664f;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    font-size: 15px;
+    height: 70px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.food-price {
+    font-weight: bold;
+    color: #e67e22;
+    font-size: 1.2rem;
+    margin: 15px 0;
+    display: block;
+}
+
+.food-rating {
+    color: #f39c12;
+    margin: 15px 0;
+    font-weight: bold;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.food-rating::before {
+    content: '★';
+    font-size: 16px;
+}
+
+.food-item .btn {
+    margin-top: 20px;
+    width: 100%;
+    transition: all 0.3s ease;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.food-item .btn:hover {
+    background-color: #e67e22;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(243, 156, 18, 0.4);
+}
+
+/* 美食详情样式 */
+.food-detail {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+.food-detail h2 {
+    color: #d35400;
+    margin-bottom: 20px;
+}
+
+.food-detail-info {
+    margin-bottom: 30px;
+}
+
+.food-detail-info p {
+    margin-bottom: 10px;
+    color: #7f664f;
+}
+
+/* 美食图片样式 */
+.food-image-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.food-image {
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .food-image {
+        max-height: 300px;
+    }
+}
+
+.reviews-section {
+    position: relative;
+    z-index: 10;
+    clear: both; /* 清除上方可能存在的浮动 */
+}
+
+.reviews-section h3 {
+    color: #d35400;
+    margin-bottom: 20px;
+}
+
+.review-item {
+    background-color: #fef5e7;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.review-item p {
+    margin-bottom: 5px;
+    color: #5d4037;
+}
+
+.review-rating {
+    color: #f39c12;
+}
+
+.review-form {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fef5e7;
+    border-radius: 8px;
+}
+
+.review-form h3 {
+    color: #d35400;
+    margin-bottom: 20px;
+}
+
+.review-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e0d2c3;
+    border-radius: 4px;
+    font-size: 16px;
+    resize: vertical;
+    min-height: 100px;
+    margin-bottom: 15px;
+    background-color: #fff9f0;
+}
+
+.review-form select {
+    padding: 8px;
+    border: 1px solid #e0d2c3;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    background-color: #fff9f0;
+    color: #5d4037;
+}
+
+/* 分类样式 */
+.category-filter {
+    margin-bottom: 40px;
+    text-align: center;
+    padding: 20px;
+    background-color: #fef9f0;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.category-filter button {
+    padding: 12px 24px;
+    margin: 0 10px 10px 0;
+    background-color: #f3e0c8;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #5d4037;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.category-filter button:hover {
+    background-color: #e0c097;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.category-filter button.active {
+    background-color: #f39c12;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(243, 156, 18, 0.3);
+}
+
+/* 标签筛选样式 */
+.tag-filter {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.tag-filter h4 {
+    color: #d35400;
+    margin-bottom: 10px;
+}
+
+.tag-filter button {
+    padding: 6px 12px;
+    margin: 0 5px 5px 0;
+    background-color: #f3e0c8;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: #5d4037;
+    font-size: 14px;
+}
+
+.tag-filter button:hover {
+    background-color: #e0c097;
+}
+
+.tag-filter button.active {
+    background-color: #f39c12;
+    color: #fff;
+}
+
+/* 英雄区域样式 */
+.hero {
+    background: linear-gradient(rgba(243, 156, 18, 0.85), rgba(211, 84, 0, 0.9)), url('https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=campus%20food%20court%20with%20variety%20of%20delicious%20foods%2C%20warm%20lighting%2C%20students%20enjoying%20meals%2C%20clean%20modern%20canteen&image_size=landscape_16_9');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+    padding: 120px 0;
+    text-align: center;
+    margin-bottom: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="20" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+    opacity: 0.3;
+    animation: float 20s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+    100% { transform: translateY(0px) rotate(360deg); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.hero-image {
+    width: 200px;
+    height: auto;
+    border-radius: 50%;
+    margin: 20px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    position: relative;
+    animation: rotate 20s linear infinite;
+}
+
+.hero h2 {
+    font-size: 3.5rem;
+    margin-bottom: 25px;
+    color: #fff;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 1s ease-out;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    opacity: 0.95;
+    animation: fadeInUp 1s ease-out 0.2s both;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+.hero-buttons .btn {
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.hero-buttons .btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f39c12;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: #e67e22;
+}
+
+.btn-primary {
+    background-color: #d35400;
+}
+
+.btn-primary:hover {
+    background-color: #b24100;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 2px solid #fff;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* 推荐美食区域样式 */
+.recommend-section {
+    background-color: #fef5e7;
+    padding: 40px 0;
+    margin-bottom: 30px;
+}
+
+.recommend-section h2 {
+    text-align: center;
+    color: #d35400;
+    margin-bottom: 10px;
+}
+
+.recommend-section p {
+    text-align: center;
+    color: #7f664f;
+    margin-bottom: 30px;
+}
+
+.view-all {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.view-all a {
+    color: #f39c12;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.view-all a:hover {
+    text-decoration: underline;
+}
+
+/* 分类区域样式 */
+.categories-section {
+    margin-bottom: 0;
+    padding: 80px 0;
+    background-color: #fef9f0;
+    position: relative;
+    overflow: hidden;
+}
+
+.categories-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(243,156,18,0.05)"/><circle cx="20" cy="20" r="1" fill="rgba(243,156,18,0.05)"/><circle cx="80" cy="80" r="1.5" fill="rgba(243,156,18,0.05)"/><circle cx="80" cy="20" r="1" fill="rgba(243,156,18,0.05)"/><circle cx="20" cy="80" r="1.5" fill="rgba(243,156,18,0.05)"/></svg>');
+    opacity: 0.5;
+}
+
+.categories-section h2 {
+    text-align: center;
+    color: #d35400;
+    margin-bottom: 45px;
+    font-size: 2.5rem;
+    position: relative;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.categories-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 6px;
+    background: linear-gradient(90deg, #f39c12, #d35400);
+    border-radius: 3px;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 35px;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.category-card {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #f3e0c8;
+}
+
+.category-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, #f39c12, #d35400);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.category-card:hover::before {
+    transform: scaleX(1);
+}
+
+.category-card h3 {
+    color: #d35400;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.category-card:hover h3 {
+    color: #e67e22;
+    transform: translateY(-5px);
+}
+
+.category-card p {
+    color: #7f664f;
+    margin-bottom: 25px;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+.category-card .btn {
+    transition: all 0.3s ease;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.category-card .btn:hover {
+    background-color: #e67e22;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4);
+}
+
+.category-card .btn:hover {
+    background-color: #e67e22;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(243, 156, 18, 0.3);
+}
+
+/* 热门评价区域样式 */
+.reviews-section {
+    background-color: #fef5e7;
+    padding: 90px 0;
+    margin-bottom: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.reviews-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(243,156,18,0.05)"/><circle cx="20" cy="20" r="1" fill="rgba(243,156,18,0.05)"/><circle cx="80" cy="80" r="1.5" fill="rgba(243,156,18,0.05)"/><circle cx="80" cy="20" r="1" fill="rgba(243,156,18,0.05)"/><circle cx="20" cy="80" r="1.5" fill="rgba(243,156,18,0.05)"/></svg>');
+    opacity: 0.5;
+}
+
+.reviews-section h2 {
+    text-align: center;
+    color: #d35400;
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+    position: relative;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.reviews-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 6px;
+    background: linear-gradient(90deg, #f39c12, #d35400);
+    border-radius: 3px;
+}
+
+.reviews-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+.review-item {
+    background-color: #fff;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #f3e0c8;
+}
+
+.review-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 100%;
+    background: linear-gradient(180deg, #f39c12, #d35400);
+    border-radius: 8px 0 0 8px;
+}
+
+.review-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.review-header h4 {
+    margin: 0;
+    color: #d35400;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.review-header .rating {
+    color: #f39c12;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.review-header .rating::before {
+    content: '★';
+    font-size: 1.4rem;
+}
+
+.review-content {
+    margin-bottom: 25px;
+    color: #5d4037;
+    line-height: 1.7;
+    font-size: 16px;
+    font-style: italic;
+}
+
+.review-meta {
+    display: flex;
+    justify-content: space-between;
+    color: #7f664f;
+    font-size: 14px;
+    padding-top: 20px;
+    border-top: 2px solid #f3e0c8;
+    font-weight: 500;
+}
+
+.review-meta .username {
+    color: #d35400;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.review-meta .review-date {
+    color: #9e7f61;
+}
+
+/* 全部美食区域样式 */
+.all-foods-section {
+    margin-bottom: 0;
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.username {
+    font-weight: bold;
+    color: #d35400;
+}
+
+/* 全部美食区域样式 */
+.all-foods-section {
+    margin-bottom: 30px;
+}
+
+.all-foods-section h2 {
+    text-align: center;
+    color: #d35400;
+    margin-bottom: 30px;
+}
+
+/* 用户中心样式 */
+.user-info-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.user-info-card h3 {
+    color: #d35400;
+    margin-bottom: 20px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.info-item strong {
+    min-width: 80px;
+    color: #5d4037;
+}
+
+.empty-message {
+    text-align: center;
+    color: #7f664f;
+    padding: 20px;
+}
+
+.error {
+    color: #e74c3c;
+    text-align: center;
+    padding: 10px;
+    background-color: #f8d7da;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+/* 用户中心样式 */
+.tabs {
+    display: flex;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #f3e0c8;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 15px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #7f664f;
+    transition: all 0.3s;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-btn:hover {
+    color: #f39c12;
+}
+
+.tab-btn.active {
+    color: #d35400;
+    border-bottom-color: #f39c12;
+    font-weight: bold;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* 表单样式 */
+.edit-profile-form,
+.change-password-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #8b4513;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e0d2c3;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff9f0;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+/* 消息样式 */
+.message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.message.success {
+    background-color: #f1f8e9;
+    color: #558b2f;
+    border: 1px solid #dcedc8;
+}
+
+.message.error {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+/* 按钮样式 */
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+/* 操作按钮区域 */
+.review-actions,
+.food-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+/* 数据统计卡片样式 */
+.stats-section {
+    margin-bottom: 30px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #f39c12;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    color: #7f664f;
+    font-size: 14px;
+}
+
+/* 用户头像样式 */
+.user-avatar {
+    margin-bottom: 20px;
+}
+
+.avatar-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+}
+
+#avatarPreview {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #f3e0c8;
+}
+
+.avatar-upload-btn {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(211, 84, 0, 0.8);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.avatar-upload-btn:hover {
+    background-color: rgba(211, 84, 0, 1);
+}
+
+/* 导航栏头像样式 */
+.navbar-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+}
+
+/* 用户信息样式 */
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .user-info {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 30px;
+    }
+    
+    .info-details {
+        flex: 1;
+    }
+}
+
+/* 信息项样式 */
+.info-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #fef5e7;
+    border-radius: 4px;
+}
+
+/* 搜索栏样式 */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f3e0c8;
+}
+
+.section-header h2 {
+    color: #d35400;
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.search-bar {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.search-bar input {
+    padding: 12px 20px;
+    border: 2px solid #f3e0c8;
+    border-radius: 50px;
+    background-color: #fff9f0;
+    color: #5d4037;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    width: 300px;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: #f39c12;
+    box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.1);
+    width: 350px;
+}
+
+.search-bar button {
+    padding: 12px 25px;
+    background-color: #f39c12;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar button:hover {
+    background-color: #e67e22;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4);
+}
+
+.search-bar select {
+    padding: 12px 20px;
+    border: 2px solid #f3e0c8;
+    border-radius: 50px;
+    background-color: #fff9f0;
+    color: #5d4037;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-bar select:focus {
+    outline: none;
+    border-color: #f39c12;
+    box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.1);
+}
+
+/* 加载状态样式 */
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #7f664f;
+    font-style: italic;
+}
+
+/* 错误信息样式 */
+.error-message {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* 选项卡内容包装器 */
+.tab-content-wrapper {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 收藏列表样式 */
+.favorites-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.favorite-item {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    position: relative;
+}
+
+.favorite-item:hover {
+    transform: translateY(-5px);
+}
+
+.favorite-item h3 {
+    color: #d35400;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.favorite-item p {
+    color: #7f664f;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.favorite-item .food-price {
+    font-weight: bold;
+    color: #e67e22;
+    margin-bottom: 10px;
+}
+
+.favorite-item .food-rating {
+    color: #f39c12;
+    margin-bottom: 15px;
+}
+
+.favorite-item .food-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+/* 批量操作样式 */
+.batch-checkbox {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+/* 返回顶部按钮样式 */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #f39c12;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+    z-index: 1000;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background-color: #e67e22;
+    transform: translateY(-5px);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero h2 {
+        font-size: 2rem;
+    }
+    
+    .tabs {
+        flex-direction: column;
+        border-bottom: none;
+    }
+    
+    .tab-btn {
+        text-align: left;
+        border-bottom: 1px solid #f3e0c8;
+    }
+    
+    .tab-btn.active {
+        border-bottom-color: #f39c12;
+    }
+    
+    .review-actions,
+    .food-actions {
+        flex-direction: column;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-bar {
+        flex-direction: column;
+    }
+    
+    .search-bar input,
+    .search-bar select {
+        width: 100%;
+    }
+    
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* 标签样式 */
+.food-tags {
+    margin: 10px 0;
+}
+
+.tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: #f3e0c8;
+    color: #d35400;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    transition: background-color 0.3s;
+}
+
+.tag:hover {
+    background-color: #e0c097;
+}
+
+/* 错误提示样式 */
+#error-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    max-width: 350px;
+}
+
+.error-message {
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: slide-in 0.3s ease-out;
+    position: relative;
+}
+
+.error-message.error {
+    background-color: #ffebee;
+    color: #c62828;
+    border-left: 4px solid #c62828;
+}
+
+.error-message.success {
+    background-color: #f1f8e9;
+    color: #558b2f;
+    border-left: 4px solid #558b2f;
+}
+
+.error-message.warning {
+    background-color: #fff9c4;
+    color: #f57f17;
+    border-left: 4px solid #f57f17;
+}
+
+.error-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+    color: inherit;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.error-close:hover {
+    opacity: 1;
+}
+
+.error-message.fade-out {
+    animation: fade-out 0.5s ease-in forwards;
+}
+
+/* 加载状态样式 */
+.loading-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fade-in 0.3s ease-out;
+}
+
+.loading-spinner {
+    border: 4px solid #f3e0c8;
+    border-top: 4px solid #f39c12;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+.loading-message {
+    font-size: 16px;
+    color: #d35400;
+}
+
+.loading-container.fade-out {
+    animation: fade-out 0.5s ease-in forwards;
+}
+
+/* 动画效果 */
+@keyframes slide-in {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/* 评价表单样式 */
+.review-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.review-form h3 {
+    color: #d35400;
+    margin-bottom: 15px;
+}
+
+.review-form-content {
+    margin-bottom: 15px;
+}
+
+/* 评分选择器样式 */
+.rating-selector {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.star-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.star-btn.active {
+    color: #f39c12;
+}
+
+.star-btn.inactive {
+    color: #ccc;
+}
+
+.star-btn:hover {
+    color: #f39c12;
+}
+
+/* 消息容器样式 */
+.message-container {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.message-container.success {
+    background-color: #f1f8e9;
+    color: #558b2f;
+    border: 1px solid #dcedc8;
+}
+
+.message-container.error {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+.message-container.loading {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    border: 1px solid #bbdefb;
+}
+
+/* 评价内容文本域样式 */
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e0d2c3;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff9f0;
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* 提交按钮样式 */
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #f39c12;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background-color: #e67e22;
+}
+
+/* 登录提示样式 */
+.login-prompt {
+    padding: 20px;
+    background-color: #fef5e7;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.login-prompt a {
+    color: #f39c12;
+    text-decoration: none;
+}
+
+.login-prompt a:hover {
+    text-decoration: underline;
+}
+
+/* 错误消息样式 */
+.error-message {
+    padding: 20px;
+    background-color: #ffebee;
+    border-radius: 4px;
+    color: #c62828;
+    text-align: center;
+}
+
+.error-message a {
+    color: #f39c12;
+    text-decoration: none;
+}
+
+.error-message a:hover {
+    text-decoration: underline;
+}
+textarea#comment {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important; /* 确保鼠标事件不被穿透 */
+    cursor: text;
+    position: relative;
+    z-index: 11;
+}

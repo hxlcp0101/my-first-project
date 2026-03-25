@@ -1,0 +1,647 @@
+/* 管理中心专用样式 */
+
+.admin-dashboard {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.admin-sidebar {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.admin-nav-list {
+    list-style: none;
+    padding: 0;
+}
+
+.admin-nav-item {
+    margin-bottom: 10px;
+}
+
+.admin-nav-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.admin-nav-link i {
+    margin-right: 12px;
+    font-size: 18px;
+}
+
+.admin-nav-link:hover {
+    background-color: var(--vivo-light-blue);
+    color: var(--vivo-blue);
+}
+
+.admin-nav-link.active {
+    background-color: var(--vivo-blue);
+    color: var(--white);
+}
+
+.admin-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.admin-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-light);
+}
+
+.admin-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.admin-card-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.admin-card-title i {
+    margin-right: 10px;
+    color: var(--vivo-blue);
+}
+
+/* 统计卡片 */
+.admin-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-item {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    border-left: 4px solid var(--vivo-blue);
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--vivo-light-blue);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-right: 15px;
+}
+
+.stat-info h4 {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.stat-info p {
+    margin: 5px 0 0 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+/* 列表美化 */
+.admin-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.admin-item-card {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.admin-item-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.admin-item-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.admin-item-tag {
+    background: var(--vivo-light-blue);
+    color: var(--vivo-blue);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.admin-item-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 10px 0;
+    flex-grow: 1;
+}
+
+.admin-item-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-light);
+}
+
+.admin-item-price {
+    font-weight: bold;
+    color: var(--vivo-blue);
+    font-size: 18px;
+}
+
+.admin-item-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* 分页样式 */
+.pagination-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+#pageInfo {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.pagination-container .btn:disabled {
+    background: #f5f5f5;
+    color: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* 标签复选框组 */
+.tags-checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: var(--vivo-gray);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+}
+
+.tag-checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.tag-checkbox-item:hover {
+    border-color: var(--vivo-blue);
+    color: var(--vivo-blue);
+}
+
+.tag-checkbox-item input[type="checkbox"] {
+    width: auto;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+
+/* 表单增强 */
+.admin-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-full-width {
+    grid-column: span 2;
+}
+
+.admin-form select, 
+.admin-form input, 
+.admin-form textarea {
+    border: 1px solid var(--border-color);
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 12px;
+    transition: border-color 0.3s ease;
+}
+
+.admin-form select:focus, 
+.admin-form input:focus, 
+.admin-form textarea:focus {
+    outline: none;
+    border-color: var(--vivo-blue);
+    box-shadow: 0 0 0 3px rgba(0, 153, 255, 0.1);
+}
+
+@media (max-width: 992px) {
+    .admin-dashboard {
+        grid-template-columns: 1fr;
+    }
+    
+    .admin-sidebar {
+        position: static;
+        margin-bottom: 20px;
+    }
+    
+    .admin-nav-list {
+        display: flex;
+        overflow-x: auto;
+        gap: 10px;
+        padding-bottom: 10px;
+    }
+    
+    .admin-nav-item {
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-form-grid {
+        grid-template-columns: 1fr;
+    }
+    .form-full-width {
+        grid-column: span 1;
+    }
+}
+
+/* 弹窗样式 */
+.modal {
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: 10vh auto;
+    padding: 0;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: modalFadeIn 0.3s ease-out;
+    overflow: hidden;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+    padding: 20px 25px;
+    background: var(--vivo-blue);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.close {
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.modal-body {
+    padding: 25px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.modal-footer {
+    padding: 15px 25px;
+    background: var(--vivo-gray);
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* 运营洞察样式 */
+.insights-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.insight-box {
+    background: #fcfcfc;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.insight-box h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: var(--text-color);
+    border-left: 4px solid var(--vivo-blue);
+    padding-left: 10px;
+}
+
+.insight-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.insight-table th, .insight-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.insight-table th {
+    background: #f5f5f5;
+    font-size: 13px;
+    color: #666;
+}
+
+.insight-table td {
+    font-size: 14px;
+}
+
+.suggestion-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.suggestion-hot { background: #fff1f0; color: #f5222d; border: 1px solid #ffa39e; }
+.suggestion-warning { background: #fffbe6; color: #faad14; border: 1px solid #ffe58f; }
+.suggestion-stable { background: #f6ffed; color: #52c41a; border: 1px solid #b7eb8f; }
+.suggestion-default { background: #f5f5f5; color: #8c8c8c; border: 1px solid #d9d9d9; }
+
+.category-insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.category-insight-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.category-insight-card h4 {
+    margin: 0 0 10px 0;
+    font-size: 15px;
+}
+
+.category-insight-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #888;
+}
+
+.category-insight-stats span b {
+    color: var(--vivo-blue);
+}
+
+/* 评价管理可视化面板样式 */
+.review-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.review-stat-card {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+}
+
+.review-stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+.review-stat-card.full-width {
+    grid-column: 1 / -1;
+}
+
+.review-stat-card h4 {
+    margin: 0 0 15px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-color);
+    border-left: 4px solid var(--vivo-blue);
+    padding-left: 10px;
+}
+
+.review-stat-content {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.review-stat-chart {
+    width: 100%;
+    height: 200px;
+}
+
+/* 评价卡片样式 */
+.review-card {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.review-card-header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+
+.review-card-avatar {
+    flex-shrink: 0;
+}
+
+.review-avatar-image {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--vivo-blue);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-card-info {
+    flex-grow: 1;
+}
+
+.review-card-user {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 5px 0;
+    color: var(--text-color);
+}
+
+.review-card-food {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0 0 10px 0;
+}
+
+.review-card-rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.review-card-rating i {
+    color: #f39c12;
+    font-size: 14px;
+    margin-right: 2px;
+}
+
+.review-card-sentiment {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+.review-card-sentiment.positive { background: #f6ffed; color: #52c41a; border: 1px solid #b7eb8f; }
+.review-card-sentiment.negative { background: #fff1f0; color: #f5222d; border: 1px solid #ffa39e; }
+.review-card-sentiment.neutral { background: #f0f5ff; color: #1890ff; border: 1px solid #adc6ff; }
+
+.review-card-content {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-color);
+    margin-bottom: 15px;
+    padding: 15px;
+    background: var(--vivo-gray);
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+}
+
+.review-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-light);
+}
+
+.review-card-date {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.review-card-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.review-card-actions .btn {
+    font-size: 12px;
+    padding: 6px 12px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .review-dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .review-stat-card.full-width {
+        grid-column: 1;
+    }
+}
+
+

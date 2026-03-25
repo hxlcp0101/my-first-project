@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美食推荐 - 校园美食测评与推荐系统</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/home.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">校园美食测评与推荐系统</div>
+            <ul class="navbar-menu" id="navbarMenu">
+                <!-- 导航菜单将通过JavaScript动态生成 -->
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="hero">
+        <div class="container">
+            <h2>美食推荐</h2>
+            <p>根据用户评分和评价，为你推荐校园最受欢迎的美食</p>
+            <div class="hero-buttons">
+                <a href="index.html" class="btn btn-secondary">返回首页</a>
+                <a href="all_foods.html" class="btn btn-tertiary">全部美食</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 筛选和推荐区域 -->
+    <section class="recommend-section">
+        <div class="container">
+            <!-- 筛选功能 -->
+            <div class="filter-section">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <h4>食堂筛选</h4>
+                        <div class="category-filter" id="categoryFilter">
+                            <button class="active" data-category="all">全部食堂</button>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <h4>价格筛选</h4>
+                        <div class="price-filter" id="priceFilter">
+                            <button class="active" data-price="all">全部价格</button>
+                            <button data-price="0-10">¥0-10</button>
+                            <button data-price="10-20">¥10-20</button>
+                            <button data-price="20-30">¥20-30</button>
+                            <button data-price="30+">¥30+</button>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <h4>标签筛选</h4>
+                        <div class="tag-filter" id="tagFilter">
+                            <button class="active" data-tag="all">全部标签</button>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <h4>排序方式</h4>
+                        <div class="sort-filter" id="sortFilter">
+                            <button class="active" data-sort="rating">按评分</button>
+                            <button data-sort="distance">按距离</button>
+                            <button data-sort="price_asc">价格从低到高</button>
+                            <button data-sort="price_desc">价格从高到低</button>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <h4>推荐方式</h4>
+                        <div class="recommend-filter" id="recommendFilter">
+                            <button class="active" data-recommend="normal">普通推荐</button>
+                            <button data-recommend="personalized">个性化推荐</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-list" id="recommendedFoods">
+                <!-- 推荐美食列表将通过JavaScript动态添加 -->
+            </div>
+        </div>
+    </section>
+
+    <script src="../js/utils.js"></script>
+    <script src="../js/recommend.js"></script>
+</body>
+</html>

@@ -1,0 +1,357 @@
+.review-actions,
+.food-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.rating-selector {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.star-btn {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+    margin: 0 4px;
+}
+
+.star-btn.active {
+    color: var(--vivo-blue);
+    transform: scale(1.1);
+}
+
+.star-btn.inactive {
+    color: #ccc;
+}
+
+.star-btn:hover {
+    color: var(--vivo-blue);
+    transform: scale(1.1);
+}
+
+.review-form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(173, 216, 230, 0.1);
+    margin-top: 20px;
+    border: 1px solid #e6f0ff;
+    position: relative;
+    overflow: hidden;
+}
+
+.review-form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--vivo-blue), var(--vivo-dark-blue));
+    border-radius: 12px 12px 0 0;
+}
+
+.review-form h3 {
+    color: var(--vivo-blue);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.review-form h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--vivo-blue), var(--vivo-dark-blue));
+    border-radius: 1.5px;
+}
+
+.review-form-content {
+    margin-bottom: 20px;
+}
+
+.review-form textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid var(--border-light);
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #f0f8ff;
+    resize: vertical;
+    min-height: 120px;
+    transition: all 0.3s ease;
+    font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.review-form textarea:focus {
+    outline: none;
+    border-color: var(--vivo-blue);
+    box-shadow: 0 0 0 3px rgba(173, 216, 230, 0.1);
+}
+
+.review-form .btn {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    background: linear-gradient(90deg, var(--vivo-blue), var(--vivo-dark-blue));
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(173, 216, 230, 0.2);
+}
+
+.review-form .btn:hover {
+    background: linear-gradient(90deg, var(--vivo-dark-blue), var(--vivo-blue));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(173, 216, 230, 0.3);
+}
+
+/* 评价表单详细样式 */
+.review-box {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(173, 216, 230, 0.1);
+    margin-top: 20px;
+    border: 1px solid #e6f0ff;
+    position: relative;
+    overflow: hidden;
+}
+
+.review-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--vivo-blue), var(--vivo-dark-blue));
+    border-radius: 12px 12px 0 0;
+}
+
+.review-box h3 {
+    color: var(--vivo-blue);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.review-box h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--vivo-blue), var(--vivo-dark-blue));
+    border-radius: 1.5px;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--vivo-blue);
+    font-size: 16px;
+    font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.star-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.star-item {
+    font-size: 30px;
+    cursor: pointer;
+    color: #ccc;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.star-item:hover {
+    color: var(--vivo-blue);
+    transform: scale(1.1);
+}
+
+.form-textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid var(--border-light);
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #f0f8ff;
+    resize: vertical;
+    min-height: 120px;
+    transition: all 0.3s ease;
+    font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--vivo-blue);
+    box-shadow: 0 0 0 3px rgba(173, 216, 230, 0.1);
+}
+
+.upload-section {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.upload-card {
+    width: 120px;
+    height: 120px;
+    border: 2px dashed #e6f0ff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8faff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.upload-card:hover {
+    border-color: var(--vivo-blue);
+    background-color: #e6f0ff;
+    transform: translateY(-2px);
+}
+
+.file-input {
+    display: none;
+}
+
+.upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.upload-icon {
+    margin-bottom: 10px;
+    color: var(--vivo-blue);
+}
+
+.upload-text {
+    text-align: center;
+}
+
+.upload-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--vivo-blue);
+    margin-bottom: 4px;
+}
+
+.upload-subtitle {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.image-preview {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.image-preview img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #e6f0ff;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    background: linear-gradient(90deg, var(--vivo-blue), var(--vivo-dark-blue));
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(173, 216, 230, 0.2);
+    font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(90deg, var(--vivo-dark-blue), var(--vivo-blue));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(173, 216, 230, 0.3);
+}
+
+#responseMsg {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+}
+
+#responseMsg.success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+
+#responseMsg.error {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+@media (max-width: 768px) {
+    .review-actions,
+    .food-actions {
+        flex-direction: column;
+    }
+    
+    .review-box,
+    .review-form {
+        padding: 20px;
+    }
+    
+    .star-item {
+        font-size: 24px;
+    }
+    
+    .upload-card {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .image-preview img {
+        width: 80px;
+        height: 80px;
+    }
+}

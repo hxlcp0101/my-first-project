@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户注册 - 校园美食测评与推荐系统</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body>
+    <div class="container">
+        <h1>校园美食测评与推荐系统</h1>
+        <div class="register-form">
+            <h2>用户注册</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="username">用户名：</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password1">密码：</label>
+                    <input type="password" id="password1" name="password1" required>
+                </div>
+                <div class="form-group">
+                    <label for="password2">确认密码：</label>
+                    <input type="password" id="password2" name="password2" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn">注册</button>
+                </div>
+                <p class="login-link">已有账号？<a href="/static/html/login.html">立即登录</a></p>
+            </form>
+            <div id="message"></div>
+        </div>
+    </div>
+    <script src="../js/utils.js"></script>
+    <script src="../js/register.js"></script>
+</body>
+</html>

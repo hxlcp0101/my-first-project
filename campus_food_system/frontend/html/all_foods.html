@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全部美食 - 校园美食测评与推荐系统</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/home.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">校园美食测评与推荐系统</div>
+            <ul class="navbar-menu" id="navbarMenu">
+                <!-- 导航菜单将通过JavaScript动态生成 -->
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="hero">
+        <div class="container">
+            <h2>全部美食</h2>
+            <p>浏览校园内所有美食，找到你的最爱</p>
+            <div class="hero-buttons">
+                <a href="index.html" class="btn btn-secondary">返回首页</a>
+                <a href="recommend.html" class="btn btn-tertiary">美食推荐</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 全部美食区域 -->
+    <section class="all-foods-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>全部美食</h2>
+                <div class="search-bar">
+                    <input type="text" id="foodSearch" placeholder="搜索美食...">
+                    <button class="btn" onclick="searchFoods()">搜索</button>
+                </div>
+            </div>
+
+            <div class="category-filter">
+                <!-- 分类按钮将通过JavaScript动态添加 -->
+                <button class="active" data-category="all">全部</button>
+            </div>
+
+            <div class="food-list" id="foodList">
+                <!-- 美食项目将通过JavaScript动态添加 -->
+            </div>
+        </div>
+    </section>
+
+    <script src="../js/utils.js"></script>
+    <script src="../js/all_foods.js"></script>
+    <script>
+        // 页面加载时初始化
+        window.onload = function() {
+            setupNavbar(); // 使用utils.js中的setupNavbar函数
+            initPage(); // 初始化美食数据
+        };
+    </script>
+</body>
+</html>
