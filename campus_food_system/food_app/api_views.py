@@ -1318,9 +1318,9 @@ def api_smart_search(request):
             # 基础搜索：名称、描述、标签
             from django.db.models import Q
             
-            # 搜索食物名称和描述
+            # 搜索食物名称、描述和分类
             foods_by_name_desc = Food.objects.filter(
-                Q(name__icontains=query) | Q(description__icontains=query)
+                Q(name__icontains=query) | Q(description__icontains=query) | Q(category__name__icontains=query)
             )
             
             # 搜索标签
